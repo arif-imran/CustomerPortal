@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:local="clr-namespace:CustomerPortalApp.Converter;assembly=CustomerPortalApp"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
+    x:Class="CustomerPortalApp.App">
+	<prism:PrismApplication.Resources>
+		<ResourceDictionary>
+            <local:CurrencyConverter x:Key="CurrencyFormatWithSign"/>
+            <local:NegateBooleanConverter x:Key="Inverter"/>
+            <local:AlternateRowConverter x:Key="BackGroundColorPicker" />
+			<local:BoldLabelConverter x:Key="BoldLabelConverter" />
+            <local:SectionUnderLineConverter x:Key="SectionUnderLineConverter" />
+			<local:CarouselItemSelectedEventArgsConverter x:Key="CarouselItemSelectedEventArgsConverter" />
+			<local:StringtoURIConverter x:Key="StringtoURIConverter"/>
+			<local:GridCellTextConverter x:Key="GridCellTextConverter"/>
+			<local:GridCellImageConverter x:Key="GridCellImageConverter"/>
+			<Color x:Key="BrandLightColor">#f6f6f6</Color>
+            <Color x:Key="BrandLightXColor">#efeded</Color>
+			<Color x:Key="BrandColor">#c0c0c0</Color>
+			<Color x:Key="BrandDarkColor">#525252</Color>
+			<Color x:Key="BrandXDarkColor">#3c3c3c</Color>
+			<Color x:Key="UrlColor">#4c90f6</Color>
+			<OnPlatform x:Key="RegularFontSize" x:TypeArguments="x:Double" iOS="12" Android="12" WinPhone="12" />
+			<OnPlatform x:Key="SmallFontSize" x:TypeArguments="x:Double" iOS="10" Android="9" WinPhone="9" />
+			<OnPlatform x:Key="RegularFontFamily" x:TypeArguments="x:String" iOS="Monaco" Android="sans-serif" WinPhone="" />
+			<Font x:Key="SmallFont" FontSize="{StaticResource SmallFontSize}" FontFamily="{StaticResource RegularFontFamily}" />
+			<Font x:Key="RegularFont" FontSize="{StaticResource RegularFontSize}" FontFamily="{StaticResource RegularFontFamily}" />
+			<Font x:Key="RegularxFont" FontSize="15" FontFamily="{StaticResource RegularFontFamily}" />
+			<Font x:Key="RegularXFont" FontSize="18" FontFamily="{StaticResource RegularFontFamily}" />
+			<Font x:Key="RegularXXFont" FontSize="24" FontFamily="{StaticResource RegularFontFamily}" />
+			<Font x:Key="RegularXXXFont" FontSize="30" FontFamily="{StaticResource RegularFontFamily}" />
+			<Style x:Key="HeadingLabelStyle" TargetType="Label">
+				<Setter Property="Font" Value="{StaticResource RegularXXXFont}" />
+				<Setter Property="TextColor" Value="{StaticResource BrandColor}" />
+				<Setter Property="VerticalOptions" Value="CenterAndExpand" />
+				<Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+				<Setter Property="HorizontalTextAlignment" Value="Center" />
+			</Style>
+            <Style x:Key="RegularxLabelStyle" TargetType="Label">
+                <Setter Property="Font" Value="{StaticResource RegularxFont}" />
+                <Setter Property="TextColor" Value="{StaticResource BrandDarkColor}" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+            </Style>
+			<Style x:Key="TitleLabelStyle" TargetType="Label">
+				<Setter Property="Font" Value="{StaticResource RegularFont}" />
+				<Setter Property="TextColor" Value="{StaticResource BrandLightColor}" />
+				<Setter Property="VerticalOptions" Value="Center" />
+				<Setter Property="HorizontalOptions" Value="Start" />
+				<Setter Property="HorizontalTextAlignment" Value="Start" />
+			</Style>
+			<Style x:Key="BoldLabelStyle" TargetType="Label">
+				<Setter Property="Font" Value="{StaticResource RegularXFont}" />
+				<Setter Property="TextColor" Value="{StaticResource BrandXDarkColor}" />
+				<Setter Property="VerticalOptions" Value="Center" />
+				<Setter Property="HorizontalOptions" Value="Start" />
+				<Setter Property="FontAttributes" Value="Bold" />
+				<Setter Property="HorizontalTextAlignment" Value="Start" />
+			</Style>
+			<Style x:Key="UrlLabelStyle" TargetType="Label" BasedOn="{StaticResource TitleLabelStyle}">
+				<Setter Property="TextColor" Value="{StaticResource UrlColor}" />
+			</Style>
+			<Style x:Key="DarkLabelStyle" TargetType="Label" BasedOn="{StaticResource TitleLabelStyle}">
+				<Setter Property="TextColor" Value="{StaticResource BrandXDarkColor}" />
+			</Style>
+			<Style x:Key="WhiteBoldStyle" TargetType="Label">
+				<Setter Property="Font" Value="{StaticResource RegularxFont}" />
+				<Setter Property="TextColor" Value="{StaticResource BrandLightColor}" />
+				<Setter Property="VerticalOptions" Value="Center" />
+			</Style>
+			<Style x:Key="WhiteReqularStyle" TargetType="Label">
+				<Setter Property="Font" Value="{StaticResource RegularFont}" />
+				<Setter Property="TextColor" Value="{StaticResource BrandLightColor}" />
+			</Style>
+			<Style x:Key="WhiteURLStyle" TargetType="Label">
+				<Setter Property="Font" Value="{StaticResource SmallFont}" />
+				<Setter Property="TextColor" Value="{StaticResource BrandLightColor}" />
+				<Setter Property="VerticalOptions" Value="Center" />
+			</Style>
+			<Style x:Key="GreyRegularStyle" TargetType="Label">
+				<Setter Property="Font" Value="{StaticResource RegularFont}" />
+				<Setter Property="TextColor" Value="{StaticResource BrandColor}" />
+				<Setter Property="VerticalOptions" Value="Center" />
+				<Setter Property="HorizontalOptions" Value="Start" />
+				<Setter Property="HorizontalTextAlignment" Value="Start" />
+			</Style>
+			<Style x:Key="DarkGreyRegularStyle" TargetType="Label" BasedOn="{StaticResource GreyRegularStyle}" >
+				<Setter Property="TextColor" Value="{StaticResource BrandXDarkColor}" />
+			</Style>
+			<!--<Style x:Key="LightLabelStyle" TargetType="Label" BasedOn="{StaticResource TitleLabelStyle}">
+				<Setter Property="TextColor" Value="{StaticResource BrandColor}" />
+			</Style>-->
+			<Style x:Key="XTitleLabelStyle" TargetType="Label" BasedOn="{StaticResource TitleLabelStyle}">
+				<Setter Property="Font" Value="{StaticResource RegularXFont}" />
+			</Style>
+			<Style x:Key="ButtonStyle" TargetType="Button">
+				<Setter Property="Font" Value="{StaticResource RegularFont}" />
+				<Setter Property="VerticalOptions" Value="CenterAndExpand" />
+				<Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+				<Setter Property="TextColor" Value="{StaticResource BrandLightColor}" />
+				<Setter Property="BackgroundColor" Value="{StaticResource BrandDarkColor}" />
+				<Setter Property="HeightRequest" Value="30" />
+				<Setter Property="WidthRequest" Value="100" />
+			</Style>
+			<Style x:Key="BigButtonStyle" TargetType="Button">
+				<Setter Property="Font" Value="{StaticResource RegularFont}" />
+				<Setter Property="VerticalOptions" Value="CenterAndExpand" />
+				<Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+				<Setter Property="TextColor" Value="White" />
+				<Setter Property="BackgroundColor" Value="{StaticResource BrandDarkColor}" />
+				<Setter Property="HeightRequest" Value="50" />
+			</Style>
+			<Style x:Key="MenuButtonStyle" TargetType="Button">
+				<Setter Property="Font" Value="{StaticResource RegularFont}" />
+				<Setter Property="VerticalOptions" Value="Center" />
+				<Setter Property="HorizontalOptions" Value="Start" />
+				<Setter Property="Margin" Value="30, 0, 0, 0" />
+				<Setter Property="TextColor" Value="{StaticResource BrandLightColor}" />
+				<Setter Property="BackgroundColor" Value="{StaticResource BrandDarkColor}" />
+				<Setter Property="BorderColor" Value="{StaticResource BrandDarkColor}" />
+			</Style>
+			<Style x:Key="EntryStyle" TargetType="Entry">
+				<Setter Property="FontSize" Value="{StaticResource RegularFontSize}" />
+				<Setter Property="FontFamily" Value="{StaticResource RegularFontFamily}" />
+				<Setter Property="VerticalOptions" Value="CenterAndExpand" />
+				<Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+				<Setter Property="TextColor" Value="{StaticResource BrandDarkColor}" />
+				<Setter Property="PlaceholderColor" Value="{StaticResource BrandColor}" />
+				<Setter Property="HeightRequest" Value="35" />
+				<Setter Property="WidthRequest" Value="250" />
+			</Style>
+
+			<Style x:Key="CachedImages" TargetType="ffimageloading:CachedImage">
+				<Setter Property="Aspect" Value="AspectFill" />
+				<Setter Property="HeightRequest" Value="{DynamicResource OneEightScreenHeight}" />
+				<Setter Property="CacheDuration" Value="5" />
+				<Setter Property="DownsampleToViewSize" Value="true" />
+				<Setter Property="LoadingPlaceholder" Value="gif_loader.gif" />
+			</Style>
+		</ResourceDictionary>
+	</prism:PrismApplication.Resources>
+</prism:PrismApplication>

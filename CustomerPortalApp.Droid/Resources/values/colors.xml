@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<resources>
+
+<!--<color name="primary">#607D8B</color>
+	<color name="primaryDark">#455A64</color>-->
+
+	<color name="primary">#EEEEEE</color>
+    <color name="primaryDark">#BDBDBD</color>
+	
+	<color name="accent">#2196F3</color>
+	<color name="window_background">#F5F5F5</color>
+	<color name="control_normal">#2196F3</color>
+	<color name="control_highlight">#2196F3</color>
+	<color name="splash_background">#000000</color>
+	
+       
+	
+</resources>

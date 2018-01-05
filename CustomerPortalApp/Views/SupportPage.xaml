@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+	xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+	prism:ViewModelLocator.AutowireViewModel="True" 
+	x:Class="CustomerPortalApp.Views.SupportPage">
+    <Grid>
+    <ListView ItemsSource="{Binding FAQItems}" BackgroundColor="White">
+		<ListView.Header>
+			<StackLayout Orientation="Vertical" BackgroundColor="White" Spacing="8">
+				<StackLayout Orientation="Vertical" BackgroundColor="{StaticResource BrandLightColor}" Padding="10" Spacing="8">
+					<Entry Placeholder="Search the FAQs" x:Name="SearchFAQ" HorizontalOptions="FillAndExpand">
+					</Entry>
+					<Label FontAttributes="Bold">
+						<Label.Text>Contact us</Label.Text>
+					</Label>
+					<Label Style="{StaticResource DarkGreyRegularStyle}" Font="{StaticResource SmallFont}">
+						<Label.Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Label.Text>
+					</Label>
+					<BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="Black">
+					</BoxView>
+					<Label FontAttributes="Bold">
+						<Label.Text>SUPPORT TOPICS</Label.Text>
+					</Label>
+					<Grid RowSpacing="15" ColumnSpacing="15" Margin="10">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*">
+							</ColumnDefinition>
+							<ColumnDefinition Width="*">
+							</ColumnDefinition>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="*">
+							</RowDefinition>
+							<RowDefinition Height="*">
+							</RowDefinition>
+							<RowDefinition Height="*">
+							</RowDefinition>
+							<RowDefinition Height="*">
+							</RowDefinition>
+							<RowDefinition Height="*">
+							</RowDefinition>
+						</Grid.RowDefinitions>
+						<StackLayout Spacing="0" BackgroundColor="White" Orientation="Vertical" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="1">
+<!--							<Image Aspect="AspectFill" HeightRequest="{DynamicResource OneEightScreenHeight}">
+								<Image.Source>
+									<UriImageSource CacheValidity="5" CachingEnabled="true" Uri="{Binding FAQSections,Converter={StaticResource GridCellImageConverter},ConverterParameter=0}" />
+								</Image.Source>
+							</Image>-->
+
+							<ffimageloading:CachedImage Style="{x:StaticResource CachedImages}"
+									Source="{Binding FAQSections,Converter={StaticResource GridCellImageConverter},ConverterParameter=0}" >
+							</ffimageloading:CachedImage>
+							<StackLayout BackgroundColor="Transparent" Orientation="Horizontal" Padding="5">
+								<Label Text="{Binding FAQSections,Converter={StaticResource GridCellTextConverter},ConverterParameter=0}" Style="{StaticResource DarkGreyRegularStyle}" FontAttributes="Bold" />
+							</StackLayout>
+						</StackLayout>
+						<StackLayout Spacing="0" BackgroundColor="White" Orientation="Vertical" Grid.Row="1" Grid.Column="0">
+<!--							<Image  Aspect="AspectFill" HeightRequest="{DynamicResource OneEightScreenHeight}">
+								<Image.Source>
+									<UriImageSource CacheValidity="5" CachingEnabled="true" Uri="{Binding FAQSections,Converter={StaticResource GridCellImageConverter},ConverterParameter=1}" />
+								</Image.Source>
+							</Image>-->
+							<ffimageloading:CachedImage Style="{x:StaticResource CachedImages}"
+									Source="{Binding FAQSections,Converter={StaticResource GridCellImageConverter},ConverterParameter=1}" >
+							</ffimageloading:CachedImage>
+							<StackLayout BackgroundColor="Transparent" Orientation="Horizontal" Padding="5">
+								<Label Text="{Binding FAQSections,Converter={StaticResource GridCellTextConverter},ConverterParameter=1}" Style="{StaticResource DarkGreyRegularStyle}" FontAttributes="Bold" />
+							</StackLayout>
+						</StackLayout>
+						<StackLayout Spacing="0" HeightRequest="{DynamicResource OneEightScreenHeight}" BackgroundColor="White" Orientation="Vertical" Grid.Row="1" Grid.Column="1">
+<!--							<Image Aspect="AspectFill" HeightRequest="{DynamicResource OneEightScreenHeight}">
+								<Image.Source>
+									<UriImageSource CacheValidity="5" CachingEnabled="true" Uri="{Binding FAQSections,Converter={StaticResource GridCellImageConverter},ConverterParameter=2}" />
+								</Image.Source>
+							</Image>-->
+							<ffimageloading:CachedImage Style="{x:StaticResource CachedImages}"
+								Source="{Binding FAQSections,Converter={StaticResource GridCellImageConverter},ConverterParameter=2}" >
+							</ffimageloading:CachedImage>
+							<StackLayout BackgroundColor="Transparent" Orientation="Horizontal" Padding="5">
+								<Label Text="{Binding FAQSections,Converter={StaticResource GridCellTextConverter},ConverterParameter=2}" Style="{StaticResource DarkGreyRegularStyle}" FontAttributes="Bold" />
+							</StackLayout>
+						</StackLayout>
+						<StackLayout Spacing="0" HeightRequest="{DynamicResource OneEightScreenHeight}" BackgroundColor="White" Orientation="Vertical" Grid.Row="2" Grid.Column="0">
+<!--							<Image Aspect="AspectFill" HeightRequest="{DynamicResource OneEightScreenHeight}">
+								<Image.Source>
+									<UriImageSource CacheValidity="5" CachingEnabled="true" Uri="{Binding FAQSections,Converter={StaticResource GridCellImageConverter},ConverterParameter=3}" />
+								</Image.Source>
+							</Image>-->
+								<ffimageloading:CachedImage Style="{x:StaticResource CachedImages}"
+									Source="{Binding FAQSections,Converter={StaticResource GridCellImageConverter},ConverterParameter=3}" >
+							</ffimageloading:CachedImage>
+							<StackLayout BackgroundColor="Transparent" Orientation="Horizontal" Padding="5">
+								<Label Text="{Binding FAQSections,Converter={StaticResource GridCellTextConverter},ConverterParameter=3}" Style="{StaticResource DarkGreyRegularStyle}" FontAttributes="Bold" />
+							</StackLayout>
+						</StackLayout>
+						<StackLayout Spacing="0" HeightRequest="{DynamicResource OneEightScreenHeight}" BackgroundColor="White" Orientation="Vertical" Grid.Row="2" Grid.Column="1">
+<!--							<Image Aspect="AspectFill" HeightRequest="{DynamicResource OneEightScreenHeight}">
+								<Image.Source>
+									<UriImageSource CacheValidity="5" CachingEnabled="true" Uri="{Binding FAQSections,Converter={StaticResource GridCellImageConverter},ConverterParameter=4}" />
+								</Image.Source>
+							</Image>-->
+								<ffimageloading:CachedImage Style="{x:StaticResource CachedImages}"
+									Source="{Binding FAQSections,Converter={StaticResource GridCellImageConverter},ConverterParameter=4}" >
+							</ffimageloading:CachedImage>
+							<StackLayout BackgroundColor="Transparent" Orientation="Horizontal" Padding="5">
+								<Label Text="{Binding FAQSections,Converter={StaticResource GridCellTextConverter},ConverterParameter=4}" Style="{StaticResource DarkGreyRegularStyle}" FontAttributes="Bold" />
+							</StackLayout>
+						</StackLayout>
+						<StackLayout Spacing="0" HeightRequest="{DynamicResource OneEightScreenHeight}" BackgroundColor="White" Orientation="Vertical" Grid.Row="3" Grid.Column="0">
+<!--							<Image Aspect="AspectFill"  HeightRequest="{DynamicResource OneEightScreenHeight}">
+								<Image.Source>
+									<UriImageSource CacheValidity="5" CachingEnabled="true" Uri="{Binding FAQSections,Converter={StaticResource GridCellImageConverter},ConverterParameter=5}" />
+								</Image.Source>
+							</Image>-->
+								<ffimageloading:CachedImage Style="{x:StaticResource CachedImages}"
+									Source="{Binding FAQSections,Converter={StaticResource GridCellImageConverter},ConverterParameter=5}" >
+							</ffimageloading:CachedImage>
+							<StackLayout BackgroundColor="Transparent" Orientation="Horizontal" Padding="5">
+								<Label Text="{Binding FAQSections,Converter={StaticResource GridCellTextConverter},ConverterParameter=5}" Style="{StaticResource DarkGreyRegularStyle}" FontAttributes="Bold" />
+							</StackLayout>
+						</StackLayout>
+						<StackLayout Spacing="0" HeightRequest="{DynamicResource OneEightScreenHeight}" BackgroundColor="White" Orientation="Vertical" Grid.Row="3" Grid.Column="1">
+<!--							<Image Aspect="AspectFill"  HeightRequest="{DynamicResource OneEightScreenHeight}">
+								<Image.Source>
+									<UriImageSource CacheValidity="5" CachingEnabled="true" Uri="{Binding FAQSections,Converter={StaticResource GridCellImageConverter},ConverterParameter=6}" />
+								</Image.Source>
+							</Image>-->
+								<ffimageloading:CachedImage Style="{x:StaticResource CachedImages}"
+									Source="{Binding FAQSections,Converter={StaticResource GridCellImageConverter},ConverterParameter=6}" >
+							</ffimageloading:CachedImage>
+							<StackLayout BackgroundColor="Transparent" Orientation="Horizontal" Padding="5">
+								<Label Text="{Binding FAQSections,Converter={StaticResource GridCellTextConverter},ConverterParameter=6}" Style="{StaticResource DarkGreyRegularStyle}" FontAttributes="Bold" />
+							</StackLayout>
+						</StackLayout>
+						<StackLayout Spacing="0" HeightRequest="{DynamicResource OneEightScreenHeight}" BackgroundColor="White" Orientation="Vertical" Grid.Row="4" Grid.Column="0">
+<!--							<Image Aspect="AspectFill"  HeightRequest="{DynamicResource OneEightScreenHeight}">
+								<Image.Source>
+									<UriImageSource CacheValidity="5" CachingEnabled="true" Uri="{Binding FAQSections,Converter={StaticResource GridCellImageConverter},ConverterParameter=7}" />
+								</Image.Source>
+							</Image>-->
+								<ffimageloading:CachedImage Style="{x:StaticResource CachedImages}"
+									Source="{Binding FAQSections,Converter={StaticResource GridCellImageConverter},ConverterParameter=7}" >
+							</ffimageloading:CachedImage>
+							<StackLayout BackgroundColor="Transparent" Orientation="Horizontal" Padding="5">
+								<Label Text="{Binding FAQSections,Converter={StaticResource GridCellTextConverter},ConverterParameter=7}" Style="{StaticResource DarkGreyRegularStyle}" FontAttributes="Bold" />
+							</StackLayout>
+						</StackLayout>
+						<StackLayout Spacing="0" HeightRequest="{DynamicResource OneEightScreenHeight}" BackgroundColor="White" Orientation="Vertical" Grid.Row="4" Grid.Column="1">
+<!--							<Image Aspect="AspectFill"  HeightRequest="{DynamicResource OneEightScreenHeight}">
+								<Image.Source>
+									<UriImageSource CacheValidity="5" CachingEnabled="true" Uri="{Binding FAQSections,Converter={StaticResource GridCellImageConverter},ConverterParameter=8}" />
+								</Image.Source>
+							</Image>-->
+								<ffimageloading:CachedImage Style="{x:StaticResource CachedImages}" 
+									Source="{Binding FAQSections,Converter={StaticResource GridCellImageConverter},ConverterParameter=8}" >
+							</ffimageloading:CachedImage>
+							<StackLayout BackgroundColor="Transparent" Orientation="Horizontal" Padding="5">
+								<Label Text="{Binding FAQSections,Converter={StaticResource GridCellTextConverter},ConverterParameter=8}" Style="{StaticResource DarkGreyRegularStyle}" FontAttributes="Bold" />
+							</StackLayout>
+						</StackLayout>
+					</Grid>
+				</StackLayout>
+				<StackLayout Orientation="Horizontal" BackgroundColor="White" Padding="10,15,10,10">
+					<Label FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="StartAndExpand">
+						<Label.Text>Contact us</Label.Text>
+					</Label>
+				</StackLayout>
+			</StackLayout>
+		</ListView.Header>
+		<ListView.ItemTemplate>
+			<DataTemplate>
+				<ViewCell>
+					<StackLayout Padding="10,0,0,0" Orientation="Horizontal">
+						<Label VerticalOptions="Center" Text="{Binding}" Style="{StaticResource DarkLabelStyle}" Font="{StaticResource RegularxFont}" FontAttributes="Bold" />
+					</StackLayout>
+				</ViewCell>
+			</DataTemplate>
+		</ListView.ItemTemplate>
+	</ListView>
+        <Grid
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            IsVisible="{Binding IsBusy}">
+            <Grid
+                BackgroundColor="Black"
+                Opacity="0.2" />
+            <ActivityIndicator
+                Color="White"
+                IsRunning="true"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+            </ActivityIndicator>
+        </Grid>
+    </Grid>
+</ContentPage>

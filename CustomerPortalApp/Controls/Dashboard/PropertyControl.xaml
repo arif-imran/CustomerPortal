@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="CustomerPortalApp.Controls.PropertyControl">
+    <ContentView.Content>
+        <Grid
+            BackgroundColor="{StaticResource BrandLightColor}"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            Padding="20,20,20,10">
+            <Grid
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                BackgroundColor="White">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="2*" />
+                    <ColumnDefinition
+                        Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition
+                            Height="3*" />
+                        <RowDefinition
+                            Height="*" />
+                    </Grid.RowDefinitions>
+                    <StackLayout
+                        Orientation="Vertical"
+                        VerticalOptions="StartAndExpand"
+                        HorizontalOptions="Start">
+
+                        <Image
+                                VerticalOptions="Start"
+                                HorizontalOptions="Start"
+                                HeightRequest="15"
+                                Margin="0,0,10,0">
+                                <Image.Source>
+                                    <OnPlatform
+                                        x:TypeArguments="ImageSource">
+                                        <OnPlatform.iOS>
+                                            <FileImageSource
+                                                File="house.png" />
+                                        </OnPlatform.iOS>
+                                        <OnPlatform.Android>
+                                            <FileImageSource
+                                                File="house.png" />
+                                        </OnPlatform.Android>
+                                        <OnPlatform.WinPhone>
+                                            <FileImageSource
+                                                File="Resources/house.png" />
+                                        </OnPlatform.WinPhone>
+                                    </OnPlatform>
+                                </Image.Source>
+                            </Image>
+                        
+                        <Label
+                            Text="{Binding LeaseAddress}"
+                            Style="{StaticResource RegularxLabelStyle}" />
+                        <Label
+                            Text="{Binding LeaseUnit}"
+                            Style="{StaticResource DarkLabelStyle}" />
+                    </StackLayout>
+                    <StackLayout
+                        Grid.Row="1"
+                        Orientation="Vertical"
+                        VerticalOptions="EndAndExpand"
+                        HorizontalOptions="Start">
+                        <StackLayout
+                            Orientation="Horizontal"
+                            VerticalOptions="StartAndExpand"
+                            HorizontalOptions="End">
+                            <Label
+                                Text="ACCOUNT NO. "
+                                Style="{StaticResource DarkLabelStyle}" />
+                            <Label
+                                Text="{Binding LeaseAccountNumber}"
+                                Style="{StaticResource DarkLabelStyle}" />
+                        </StackLayout>
+            <!--            <Label
+                            HorizontalOptions="Start"
+                            VerticalOptions="End"
+                            Text="VIEW PROPERTY &gt; "
+                            Style="{StaticResource UrlLabelStyle}" />-->
+                    </StackLayout>
+                </Grid>
+                <BoxView
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    BackgroundColor="{StaticResource BrandColor}"
+                    WidthRequest="1"
+                    Margin="0,10"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="End" />
+                <Grid
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition
+                            Height="*" />
+                        <RowDefinition
+                            Height="*" />
+                    </Grid.RowDefinitions>
+                    <StackLayout
+                        Orientation="Vertical"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        Margin="0,8"
+                        Spacing="2">
+                        <Label
+                            Text="Balance"
+                            Style="{StaticResource DarkLabelStyle}"
+                            HorizontalOptions="CenterAndExpand" />
+                        <Label
+                            Text="{Binding AccountBalance, Converter={StaticResource CurrencyFormatWithSign},ConverterParameter=false}}"
+                            FontAttributes="Bold"
+                            Style="{StaticResource BoldLabelStyle}"
+                            HorizontalOptions="CenterAndExpand" />
+                        <Label
+                            Text="Debit"
+                            Style="{StaticResource DarkLabelStyle}"
+                            HorizontalOptions="CenterAndExpand" />
+                        <BoxView
+                            WidthRequest="1"
+                            BackgroundColor="{StaticResource BrandColor}"
+                            HeightRequest="1"
+                            Margin="2,0" />
+                    </StackLayout>
+                    <StackLayout
+                        Grid.Row="1"
+                        Orientation="Vertical"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand"
+                        Margin="0,8"
+                        Spacing="2">
+                        <Label
+                            Text="Maintenance"
+                            Style="{StaticResource DarkLabelStyle}"
+                            HorizontalOptions="CenterAndExpand" />
+                        <Label
+                            Text="{Binding NumberOfJobs}"
+                            FontAttributes="Bold"
+                            Style="{StaticResource BoldLabelStyle}"
+                            HorizontalOptions="CenterAndExpand" />
+                        <Label
+                            Text="Upcoming jobs"
+                            Style="{StaticResource DarkLabelStyle}"
+                            HorizontalOptions="CenterAndExpand" />
+                    </StackLayout>
+                </Grid>
+            </Grid>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    x:Class="CustomerPortalApp.Views.ProfilePage"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Title="My Profile">
+    <Grid>
+        <ScrollView>
+            <StackLayout
+                Orientation="Vertical"
+                BackgroundColor="{StaticResource BrandLightColor}">
+                <StackLayout
+                    Margin="0,10,0,0"
+                    Orientation="Vertical"
+                    BackgroundColor="White">
+                    <StackLayout
+                        Padding="10,10,10,0"
+                        Spacing="2"
+                        Orientation="Horizontal">
+                        <Label
+                            HorizontalOptions="Start"
+                            Style="{StaticResource DarkLabelStyle}"
+                            Font="{StaticResource RegularxFont}"
+                            FontAttributes="Bold"
+                            Text="PERSONAL DETAILS">
+                        </Label>
+                        <Label
+                            HorizontalTextAlignment="End"
+                            Style="{x:StaticResource UrlLabelStyle}"
+                            HorizontalOptions="EndAndExpand"
+                            FontAttributes="Bold"
+                            Text="EDIT">
+                        </Label>
+                    </StackLayout>
+                    <BoxView
+                        HeightRequest="1"
+                        Margin="10,7,10,7"
+                        BackgroundColor="{StaticResource BrandColor}">
+                    </BoxView>
+                    <StackLayout
+                        Spacing="2"
+                        Padding="10,0,10,0"
+                        Orientation="Horizontal">
+                        <Label
+                            x:Name="lblFirstName"
+                            Text="{Binding FirstName}">
+                        </Label>
+                        <Label
+                            x:Name="lblLastName"
+                            Text="{Binding LastName}">
+                        </Label>
+                    </StackLayout>
+                    <BoxView
+                        HeightRequest="1"
+                        Margin="10,7,10,7"
+                        BackgroundColor="{StaticResource BrandColor}">
+                    </BoxView>
+                    <StackLayout
+                        Spacing="2"
+                        Padding="10,0,10,10"
+                        Orientation="Vertical">
+                        <Label
+                            Text="{Binding Street}" />
+                        <Label
+                            Text="{Binding Town}" />
+                        <Label
+                            Text="{Binding Country}"/>
+                        <Label
+                            Text="{Binding Postcode}"/>
+                        <Label
+                            Text="{Binding Description}"/>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout
+                    Margin="0,10,0,0"
+                    Orientation="Vertical"
+                    BackgroundColor="White">
+                    <StackLayout
+                        Spacing="2"
+                        Padding="10"
+                        Orientation="Horizontal">
+                        <Label
+                            HorizontalOptions="Start"
+                            Style="{StaticResource DarkLabelStyle}"
+                            Font="{StaticResource RegularxFont}"
+                            FontAttributes="Bold"
+                            Text="ACCOUNT DETAILS">
+                        </Label>
+                        <Label
+                            HorizontalTextAlignment="End"
+                            Style="{x:StaticResource UrlLabelStyle}"
+                            HorizontalOptions="EndAndExpand"
+                            FontAttributes="Bold"
+                            Text="EDIT">
+                        </Label>
+                    </StackLayout>
+                    <BoxView
+                        HeightRequest="1"
+                        Margin="10,7,10,7"
+                        BackgroundColor="{StaticResource BrandColor}">
+                    </BoxView>
+                    <StackLayout
+                        Spacing="2"
+                        Padding="10,0,10,0"
+                        Orientation="Horizontal">
+                        <Label
+                            Text="Email:">
+                        </Label>
+                        <Label
+                            Margin="5,0,0,0"
+                            Text="{Binding Email}"/>
+                    </StackLayout>
+                    <BoxView
+                        HeightRequest="1"
+                        Margin="10,7,10,7"
+                        BackgroundColor="{StaticResource BrandColor}">
+                    </BoxView>
+                    <StackLayout
+                        Spacing="2"
+                        Padding="10,0,10,10"
+                        Orientation="Horizontal">
+                        <Label
+                            Text="Password:">
+                        </Label>
+                        <Label
+                            x:Name="txtPassword"
+                            Margin="5,0,0,0"
+                            Text="{Binding Password}">
+                        </Label>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout
+                    Margin="0,10,0,0"
+                    Orientation="Vertical"
+                    BackgroundColor="White">
+                    <StackLayout
+                        Spacing="2"
+                        Padding="10"
+                        Orientation="Horizontal">
+                        <Label
+                            HorizontalOptions="Start"
+                            Style="{StaticResource DarkLabelStyle}"
+                            Font="{StaticResource RegularxFont}"
+                            FontAttributes="Bold"
+                            Text="EMAIL SETTINGS">
+                        </Label>
+                    </StackLayout>
+                    <BoxView
+                        HeightRequest="1"
+                        Margin="10,7,10,7"
+                        BackgroundColor="{StaticResource BrandColor}">
+                    </BoxView>
+                    <StackLayout
+                        Spacing="2"
+                        Padding="10,0,10,0"
+                        Orientation="Horizontal">
+                        <Label
+                            HorizontalOptions="Start"
+                            Style="{StaticResource DarkLabelStyle}"
+                            Font="{StaticResource RegularxFont}"
+                            FontAttributes="Bold"
+                            Text="Receive Emails">
+                        </Label>
+                        <Switch
+                            HorizontalOptions="EndAndExpand">
+                        </Switch>
+                    </StackLayout>
+                    <StackLayout
+                        Spacing="2"
+                        Padding="10,0,10,10"
+                        Orientation="Vertical">
+                        <Label
+                            HorizontalOptions="Start"
+                            Style="{StaticResource DarkLabelStyle}"
+                            Text="I would like to receive updates on upcoming news, events and offers via email from grosvenor">
+                        </Label>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+         <Grid
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            IsVisible="{Binding IsBusy}">
+            <Grid
+                BackgroundColor="Black"
+                Opacity="0.2" />
+            <ActivityIndicator
+                Color="White"
+                IsRunning="true"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+            </ActivityIndicator>
+        </Grid>
+    </Grid>
+</ContentPage>

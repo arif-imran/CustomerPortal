@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="CustomerPortalApp.Controls.AccountCarousel">
+    <ContentView.Content>
+        <StackLayout
+            BackgroundColor="{StaticResource BrandLightColor}"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            Padding="20,20,20,10">
+            <StackLayout
+                Orientation="Vertical"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                Padding="10"
+                BackgroundColor="White">
+                <Image
+                    VerticalOptions="Start"
+                    HorizontalOptions="Start"
+                    HeightRequest="15"
+                    Margin="0,0,10,0">
+                    <Image.Source>
+                        <OnPlatform
+                            x:TypeArguments="ImageSource">
+                            <OnPlatform.iOS>
+                                <FileImageSource
+                                    File="house.png" />
+                            </OnPlatform.iOS>
+                            <OnPlatform.Android>
+                                <FileImageSource
+                                    File="house.png" />
+                            </OnPlatform.Android>
+                            <OnPlatform.WinPhone>
+                                <FileImageSource
+                                    File="Resources/house.png" />
+                            </OnPlatform.WinPhone>
+                        </OnPlatform>
+                    </Image.Source>
+                </Image>
+                <Label Text="{Binding LeaseAddress}" Style="{StaticResource DarkLabelStyle}" Font="{StaticResource RegularXFont}" FontAttributes="Bold" VerticalOptions="Start" />
+                <Label Text="{Binding LeaseAddress}" Style="{StaticResource DarkLabelStyle}" Font="{StaticResource RegularxFont}" VerticalOptions="Start" />
+                <Label Text="{Binding LeaseAccountNumber,StringFormat='Account No: {0}'}" Style="{StaticResource DarkLabelStyle}" Font="{StaticResource RegularxFont}" VerticalOptions="EndAndExpand" Margin="0,0,0,10" AutomationId="TestAccountNo" />
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CustomerPortalApp.Controls.Account.AccountStatement">
+    <ContentView.Content>
+        <StackLayout Orientation="Vertical">
+            <ListView  SeparatorVisibility="None" BackgroundColor="{StaticResource BrandLightXColor}" ItemsSource="{Binding Source}" HasUnevenRows="true" IsGroupingEnabled="true">
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="30">
+                            <ViewCell.View>
+                                <StackLayout BackgroundColor="{StaticResource BrandLightXColor}" VerticalOptions="FillAndExpand">
+                                    <Label Margin="10,7,10,5" Text="{Binding Key}" FontAttributes="Bold" FontSize="12" />
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Grid BackgroundColor="{Binding Index, Converter={StaticResource BackGroundColorPicker}}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <StackLayout Padding="10,5,10,5" Orientation="Horizontal">
+                                        <StackLayout Orientation="Vertical">
+                                            <Label Text="{Binding Day}" LineBreakMode="NoWrap" Style="{StaticResource DarkGreyRegularStyle}" FontAttributes="Bold" Font="{StaticResource RegularxFont}" />
+                                            <Label Text="{Binding Month}" LineBreakMode="NoWrap" Style="{StaticResource DarkGreyRegularStyle}" FontSize="10" />
+                                        </StackLayout>
+                                        <StackLayout Padding="10,0,0,0" HorizontalOptions="Start" Orientation="Vertical">
+                                            <Label Text="{Binding Description}" Style="{StaticResource DarkGreyRegularStyle}" FontAttributes="Bold" Font="{StaticResource RegularxFont}" LineBreakMode="NoWrap" />
+                                            <Label Text="{Binding InvoiceNo}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="10" />
+                                        </StackLayout>
+                                        <StackLayout HorizontalOptions="EndAndExpand" Orientation="Vertical">
+                                            <Label Text="{Binding DisplayAmount,Converter={StaticResource CurrencyFormatWithSign},ConverterParameter=true}" Style="{StaticResource DarkGreyRegularStyle}" FontAttributes="Bold" Font="{StaticResource RegularxFont}" LineBreakMode="NoWrap" />
+                                            <Label Text="{Binding Balance,Converter={StaticResource CurrencyFormatWithSign},ConverterParameter=false}" HorizontalTextAlignment="End" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="10" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Grid>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <StackLayout Orientation="Vertical">
+                        <StackLayout VerticalOptions="Center" Padding="20,20,20,0" HorizontalOptions="Center" Orientation="Vertical" IsVisible="{Binding IsStatementTab}">
+                            <Label AutomationId="aiFullStatement" IsVisible="{Binding IsStatementAvailable}" Margin="20" Text="Full statement available through our website" Style="{StaticResource DarkLabelStyle}" />
+                            <Label HorizontalOptions="Center" VerticalOptions="Center" Text="No records in the statement" IsVisible="{Binding IsStatementAvailable, Converter={StaticResource Inverter}" />
+                        </StackLayout>
+                        <StackLayout IsVisible="{Binding IsCurrentBalanceTab}" Padding="20,20,20,0" HorizontalOptions="Center" VerticalOptions="Center" Orientation="Vertical">
+                            <Label HorizontalOptions="Center" VerticalOptions="Center" Text="You have no outstanding charges" IsVisible="{Binding IsCurrentBalanceAvailable, Converter={StaticResource Inverter}" />
+                        </StackLayout>
+                    </StackLayout>
+                </ListView.Footer>
+            </ListView>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+	prism:ViewModelLocator.AutowireViewModel="True"
+	x:Class="CustomerPortalApp.Views.MainMenuPage"
+	Title="Menu"
+	Icon="menu"
+	BackgroundColor="{StaticResource BrandDarkColor}">
+	<Grid
+		VerticalOptions="FillAndExpand"
+		HorizontalOptions="FillAndExpand">
+		<Grid.RowDefinitions>
+			<RowDefinition
+				Height="3*" />
+			<RowDefinition
+				Height="12*" />
+			<RowDefinition
+				Height="2*" />
+		</Grid.RowDefinitions>
+		<Grid
+			BackgroundColor="{StaticResource BrandXDarkColor}">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition
+					Width="2*" />
+				<ColumnDefinition
+					Width="5*" />
+			</Grid.ColumnDefinitions>
+			<StackLayout
+				Grid.Column="1"
+				Orientation="Vertical"
+				VerticalOptions="Center"
+				HorizontalOptions="Start">
+				<Label
+					Text="Welcome back"
+					Style="{StaticResource TitleLabelStyle}" />
+				<Label
+					Text="{Binding Username}"
+                    FontSize="10"
+					Style="{StaticResource TitleLabelStyle}" />
+			</StackLayout>
+		</Grid>
+		<StackLayout
+			Grid.Row="1"
+			Orientation="Vertical"
+			VerticalOptions="StartAndExpand"
+			HorizontalOptions="StartAndExpand"
+			>
+			<Button
+				Text="My Profile"
+				Command="{Binding MyProfileCommand}"
+				Style="{StaticResource MenuButtonStyle}" />
+			<Button
+				Text="Settings"
+				Command="{Binding MySettingsCommand}"
+				Style="{StaticResource MenuButtonStyle}" />
+		</StackLayout>
+		<BoxView
+			Grid.Row="1"
+			HorizontalOptions="FillAndExpand"
+			VerticalOptions="End"
+			Color="{StaticResource BrandLightColor}"
+			HeightRequest="1"
+			BackgroundColor="{StaticResource BrandLightColor}" />
+		<Button
+			Grid.Row="2"
+			Text="Logout"
+			Command="{Binding LogoutCommand}"
+			Style="{StaticResource MenuButtonStyle}" />
+	</Grid>
+</ContentPage>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    x:Class="CustomerPortalApp.Views.ExtendedLoadingPage"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Title="Loading">
+    <Grid
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand">
+        <Image
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Aspect="AspectFill">
+            <Image.Source>
+                <OnPlatform
+                    x:TypeArguments="ImageSource">
+                    <OnPlatform.iOS>
+                        <FileImageSource
+                            File="loadinglogo.png" />
+                    </OnPlatform.iOS>
+                    <OnPlatform.Android>
+                        <FileImageSource
+                            File="loadinglogo.png" />
+                    </OnPlatform.Android>
+                    <OnPlatform.WinPhone>
+                        <FileImageSource
+                            File="Resources/loadinglogo.png" />
+                    </OnPlatform.WinPhone>
+                </OnPlatform>
+            </Image.Source>
+        </Image>
+    </Grid>
+</ContentPage>

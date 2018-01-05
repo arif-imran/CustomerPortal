@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="CustomerPortalApp.Views.EventsDetailsPage"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Title="Article">
+    <ContentPage.Content>
+        <Grid>
+             <WebView HorizontalOptions="Fill" VerticalOptions="FillAndExpand" Navigating="webOnNavigating" Navigated="webOnEndNavigating" Source="{Binding WebViewSource}">
+                <WebView.Source>
+                    <HtmlWebViewSource Html="{Binding Html}">
+                    </HtmlWebViewSource>
+                </WebView.Source>
+            </WebView>
+        <Grid
+            x:Name="LoadingIndicator"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            IsVisible="false">
+            <Grid
+                BackgroundColor="Black"
+                Opacity="0.2" />
+            <ActivityIndicator
+                Color="White"
+                IsRunning="true"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+            </ActivityIndicator>
+        </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

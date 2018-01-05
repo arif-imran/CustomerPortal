@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+	xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:controls="clr-namespace:CustomerPortalApp.Controls;assembly=CustomerPortalApp"
+    xmlns:commoncontrols="clr-namespace:Grosvenor.Mobile.Forms.Controls;assembly=Grosvenor.Mobile.Forms"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    x:Class="CustomerPortalApp.Views.DashboardPage"
+    AutomationId="LoginTest">
+    <Grid>
+        <ScrollView>
+            <StackLayout
+                x:Name="MainLayout"
+                Orientation="Vertical">
+                <controls:CarouselControl
+                    HeightRequest="{DynamicResource OneThirdScreenHeight}"
+                    x:Name="PropertyCarousel"
+                    ItemSource="{Binding Properties}"
+                    VerticalOptions="EndAndExpand">
+                </controls:CarouselControl>
+                <Grid
+                    HeightRequest="{DynamicResource OneForthScreenHeight}"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    BackgroundColor="{x:StaticResource BrandDarkColor}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition
+                            Width="*" />
+                        <ColumnDefinition
+                            Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition
+                                Height="3*" />
+                            <RowDefinition
+                                Height="*" />
+                        </Grid.RowDefinitions>
+                        <StackLayout
+                            Orientation="Vertical"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Start">
+                            <Label
+                                Text="Exclusive Offer"
+                                Style="{x:StaticResource GreyRegularStyle}">
+                            </Label>
+                            <Label
+                                Text="{Binding Offers.Title}"
+                                Style="{x:StaticResource WhiteBoldStyle}"
+                                FontAttributes="Bold">
+                            </Label>
+                            <Label
+                                Text="{Binding Offers.Description}"
+                                Style="{x:StaticResource WhiteReqularStyle}">
+                            </Label>
+                        </StackLayout>
+                        <!--                        <Label
+                            VerticalOptions="End"
+                            HorizontalOptions="Start"
+                            Grid.Row="1"
+                            Text="VIEW OFFER &gt;"
+                            Style="{StaticResource UrlLabelStyle}">
+                        </Label>-->
+                    </Grid>
+                    <!-- <Image
+                                WidthRequest="{DynamicResource HalfScreenWidth}"
+                                HeightRequest="{DynamicResource OneEightScreenHeight}"
+                                VerticalOptions="CenterAndExpand"
+                                Aspect="AspectFit"
+                                HorizontalOptions="EndAndExpand">
+                                    <UriImageSource
+                                        CacheValidity="5"
+                                        CachingEnabled="true"
+                                        Uri="{Binding Offers.ImageURL,Converter={StaticResource StringtoURIConverter}}" />
+                            </Image>-->
+                    <Image
+                        Grid.Column="1"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand"
+                        Aspect="AspectFill">
+                        <Image.Source>
+                            <OnPlatform
+                                x:TypeArguments="ImageSource">
+                                <OnPlatform.iOS>
+                                    <FileImageSource
+                                        File="restaurant.jpg" />
+                                </OnPlatform.iOS>
+                                <OnPlatform.Android>
+                                    <FileImageSource
+                                        File="restaurant.jpg" />
+                                </OnPlatform.Android>
+                                <OnPlatform.WinPhone>
+                                    <FileImageSource
+                                        File="Resources/restaurant.jpg" />
+                                </OnPlatform.WinPhone>
+                            </OnPlatform>
+                        </Image.Source>
+                    </Image>
+                    <!--                    <Label
+                        Grid.Column="1"
+                        HorizontalOptions="End"
+                        VerticalOptions="Start"
+                        Text="VIEW ALL &gt;"
+                        FontAttributes="Bold"
+                        Style="{StaticResource WhiteURLStyle}"
+                        HorizontalTextAlignment="End">
+                    </Label>-->
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding OfferTapCommand}" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+                <Grid
+                    VerticalOptions="FillAndExpand"
+                    RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition
+                            Height="Auto" />
+                        <RowDefinition
+                            Height="Auto" />
+                        <RowDefinition
+                            Height="{DynamicResource TwoThirdScreenHeight}" />
+                    </Grid.RowDefinitions>
+                    <StackLayout
+                        Margin="10,10,10,10"
+                        Orientation="Horizontal">
+                        <StackLayout
+                            Orientation="Vertical">
+                            <Label
+                                x:Name="CommunityTab"
+                                Margin="0,0,10,0"
+                                Text="My Community"
+                                Style="{StaticResource BoldLabelStyle}"
+                                FontAttributes="{Binding ActiveTabTitle,Converter={StaticResource BoldLabelConverter},ConverterParameter=My Community}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding TableSelectionCommand}"
+                                        CommandParameter="My Community" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <BoxView
+                                VerticalOptions="End"
+                                HeightRequest="1"
+                                BackgroundColor="{StaticResource BrandXDarkColor}"
+                                IsVisible="{Binding ActiveTabTitle,Converter={StaticResource SectionUnderLineConverter},ConverterParameter=My Community}">
+                            </BoxView>
+                        </StackLayout>
+                        <StackLayout
+                            Orientation="Vertical">
+                            <Label
+                                x:Name="EventTab"
+                                Margin="0,0,10,0"
+                                Text="Events"
+                                Style="{StaticResource BoldLabelStyle}"
+                                FontAttributes="{Binding ActiveTabTitle,Converter={StaticResource BoldLabelConverter},ConverterParameter=Events}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding TableSelectionCommand}"
+                                        CommandParameter="Events" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <BoxView
+                                VerticalOptions="End"
+                                HeightRequest="1"
+                                BackgroundColor="{StaticResource BrandXDarkColor}"
+                                IsVisible="{Binding ActiveTabTitle,Converter={StaticResource SectionUnderLineConverter},ConverterParameter=Events}">
+                            </BoxView>
+                        </StackLayout>
+                        <!--                        <Label
+                            Text="VIEW ALL &gt;"
+                            HorizontalTextAlignment="End"
+                            HorizontalOptions="EndAndExpand"
+                            Style="{x:StaticResource UrlLabelStyle}">
+                        </Label>-->
+                    </StackLayout>
+                    <StackLayout
+                        Grid.Row="1"
+                        Margin="10,0,10,0"
+                        Orientation="Horizontal"
+                        HeightRequest="1"
+                        BackgroundColor="{StaticResource BrandColor}">
+                        <BoxView>
+                        </BoxView>
+                    </StackLayout>
+                    <Grid
+                        Grid.Row="2"
+                        RowSpacing="15"
+                        ColumnSpacing="0"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="StartAndExpand">
+                        <controls:GridView
+                            ItemsSource="{Binding ActiveTabData}"
+                            Orientation="Horizontal"
+                            Spacing="0">
+                            <controls:GridView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid
+                                        HeightRequest="{DynamicResource HalfScreenWidth}"
+                                        WidthRequest="{DynamicResource HalfScreenWidth}"
+                                        BackgroundColor="{StaticResource BrandLightColor}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition
+                                                Height="3*">
+                                            </RowDefinition>
+                                            <RowDefinition
+                                                Height="2*">
+                                            </RowDefinition>
+                                        </Grid.RowDefinitions>
+<!--                                        <Image
+                                            Aspect="AspectFill">
+                                            <Image.Source>
+                                                <UriImageSource
+                                                    CacheValidity="5"
+                                                    CachingEnabled="true"
+                                                    Uri="{Binding ImageUrl}" />
+                                            </Image.Source>
+                                        </Image>-->
+										<ffimageloading:CachedImage Style="{x:StaticResource CachedImages}"
+                                            Source="{Binding ImageUrl}" >
+										</ffimageloading:CachedImage>
+                                        <Label
+                                            Grid.Row="1"
+                                            Text="{Binding Title}"
+                                            Style="{StaticResource DarkGreyRegularStyle}"
+                                            FontAttributes="Bold"
+                                            Margin="10,5,10,5" />
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding ImageTapCommand}"
+                                                CommandParameter="{Binding Content}" />
+                                        </Grid.GestureRecognizers>
+                                    </Grid>
+                                </DataTemplate>
+                            </controls:GridView.ItemTemplate>
+                        </controls:GridView>
+                    </Grid>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+        <Grid
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            IsVisible="{Binding IsBusy}">
+            <Grid
+                BackgroundColor="Black"
+                Opacity="0.2" />
+            <ActivityIndicator
+                Color="White"
+                IsRunning="true"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+            </ActivityIndicator>
+        </Grid>
+    </Grid>
+</ContentPage>

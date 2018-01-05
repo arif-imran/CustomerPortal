@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    xmlns:controls="clr-namespace:CustomerPortalApp.Controls;assembly=CustomerPortalApp"
+    xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+    xmlns:c="clr-namespace:Prism.Converters;assembly=Prism.Forms"
+    x:Class="CustomerPortalApp.Views.AccountPage">
+    <Grid>
+    <ScrollView>
+        <StackLayout
+            Orientation="Vertical">
+            <StackLayout
+                Orientation="Vertical">
+                <controls:CarouselControl
+                    HeightRequest="{DynamicResource OneThirdScreenHeight}"
+                    x:Name="PropertyCarousel"
+                    Command="{Binding PropertySelectedCommand, Mode=TwoWay}"
+                    ItemSource="{Binding Properties}"
+                    VerticalOptions="EndAndExpand">
+                </controls:CarouselControl>
+            </StackLayout>
+            <StackLayout>
+                <ListView
+                    ItemsSource="{Binding Navigations}"
+                    BackgroundColor="{StaticResource BrandLightColor}">
+                    <ListView.Behaviors>
+                        <behaviors:EventToCommandBehavior
+                            EventName="ItemTapped"
+                            Command="{Binding ItemTappedCommand}"
+                            EventArgsParameterPath="Item" />
+                    </ListView.Behaviors>
+                    <ListView.Header>
+                        <StackLayout
+                            BackgroundColor="White"
+                            Orientation="Vertical"
+                            Spacing="15"
+                            Padding="10,0,10,0">
+                            <StackLayout
+                                Orientation="Horizontal"
+                                Spacing="15">
+                                <Label
+                                    Text="Balance:"
+                                    Style="{StaticResource DarkLabelStyle}"
+                                    Font="{StaticResource RegularXXFont}" />
+                                <Label
+                                    Text="{Binding Balance,Converter={StaticResource CurrencyFormatWithSign},ConverterParameter=false}}"
+                                    HorizontalOptions="FillAndExpand"
+                                    Style="{StaticResource DarkLabelStyle}"
+                                    Font="{StaticResource RegularXXFont}"
+                                    FontAttributes="Bold" />
+                            </StackLayout>
+                            <BoxView
+                                HeightRequest="1"
+                                BackgroundColor="{StaticResource BrandColor}">
+                            </BoxView>
+                            <Grid
+                                Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition
+                                        Width="*">
+                                    </ColumnDefinition>
+                                    <ColumnDefinition
+                                        Width="*">
+                                    </ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Button
+                                    Grid.Row="0"
+                                    HorizontalOptions="FillAndExpand"
+                                    Grid.Column="0"
+                                    x:Name="BtnMakePayment"
+                                    Style="{StaticResource BigButtonStyle}"
+                                    Text="MAKE A PAYMENT"
+                                    FontAttributes="Bold"
+                                    BorderRadius="0" />
+                                <Button
+                                    Grid.Row="0"
+                                    BackgroundColor="{StaticResource BrandColor}"
+                                    TextColor="{StaticResource BrandXDarkColor}"
+                                    HorizontalOptions="FillAndExpand"
+                                    Grid.Column="1"
+                                    x:Name="BtnRequestAJob"
+                                    Style="{StaticResource BigButtonStyle}"
+                                    Text="REQUEST A JOB"
+                                    FontAttributes="Bold"
+                                    BorderRadius="0" />
+                            </Grid>
+                        </StackLayout>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout
+                                    Padding="10,0,0,0"
+                                    Orientation="Horizontal">
+                                    <Label
+                                        VerticalOptions="Center"
+                                        Text="{Binding Name}"
+                                        Style="{StaticResource DarkLabelStyle}"
+                                        Font="{StaticResource RegularxFont}"
+                                        FontAttributes="Bold" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+        <Grid
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            IsVisible="{Binding IsBusy}">
+            <Grid
+                BackgroundColor="Black"
+                Opacity="0.2" />
+            <ActivityIndicator
+                Color="White"
+                IsRunning="true"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+            </ActivityIndicator>
+        </Grid>
+    </Grid>
+</ContentPage>

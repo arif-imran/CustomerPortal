@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+	prism:ViewModelLocator.AutowireViewModel="True"
+	x:Class="CustomerPortalApp.Views.ContactPage">
+    <Grid>
+	<StackLayout Orientation="Vertical"  BackgroundColor="{StaticResource BrandLightColor}">
+		<StackLayout Orientation="Vertical" BackgroundColor="Transparent" Padding="10" Spacing="8" >
+			<Label  Style="{StaticResource BoldLabelStyle}" FontAttributes="Bold"><Label.Text>Contact us</Label.Text></Label>
+			<Label Style="{StaticResource DarkGreyRegularStyle}" Font="{StaticResource SmallFont}"><Label.Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Label.Text></Label>
+			<StackLayout Orientation="Horizontal" BackgroundColor="White" HorizontalOptions="StartAndExpand" Spacing="5" Padding="10">
+				 <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding MakePhoneCall}"
+                                        CommandParameter="+44(0)207312001" />
+                                </StackLayout.GestureRecognizers>
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*"></RowDefinition>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"></ColumnDefinition>
+						<ColumnDefinition Width="2*"></ColumnDefinition>
+						<ColumnDefinition Width="*"></ColumnDefinition>
+					</Grid.ColumnDefinitions>
+					<Label Grid.Row="0" Grid.Column="0" Style="{StaticResource DarkGreyRegularStyle}" Font="{StaticResource RegularFont}"><Label.Text>Phone us:</Label.Text></Label>
+					<Label Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" Style="{StaticResource DarkGreyRegularStyle}" Font="{StaticResource RegularFont}" FontAttributes="Bold"><Label.Text>+44(0)207312001</Label.Text></Label>
+					<Label Grid.Row="0" Grid.Column="2" Style="{StaticResource DarkGreyRegularStyle}" Font="{StaticResource SmallFont}"><Label.Text>Call out team from 09:00 to 17:00</Label.Text></Label>
+				</Grid>
+			</StackLayout>
+			<StackLayout Orientation="Horizontal" BackgroundColor="White" HorizontalOptions="FillAndExpand" Spacing="5" Padding="10">
+				 <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding SendEmail}"
+                                        CommandParameter="info@grosvenor.com" />
+                                </StackLayout.GestureRecognizers>
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*"></RowDefinition>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"></ColumnDefinition>
+						<ColumnDefinition Width="2*"></ColumnDefinition>
+						<ColumnDefinition Width="*"></ColumnDefinition>
+					</Grid.ColumnDefinitions>
+				<Label Grid.Row="0" Grid.Column="0" Style="{StaticResource DarkGreyRegularStyle}" Font="{StaticResource RegularFont}"><Label.Text>Email us:</Label.Text></Label>
+				<Label Grid.Row="0" Grid.Column="1"  HorizontalTextAlignment="Center"  Style="{StaticResource DarkGreyRegularStyle}" Font="{StaticResource RegularFont}" FontAttributes="Bold"><Label.Text>info@grosvenor.com</Label.Text></Label>
+				<Label Grid.Row="0" Grid.Column="2" Style="{StaticResource DarkGreyRegularStyle}" Font="{StaticResource SmallFont}"><Label.Text>Our team will reply within 1 - 2 days</Label.Text></Label>
+				</Grid>
+			</StackLayout>
+			<StackLayout Orientation="Horizontal" BackgroundColor="White" HorizontalOptions="End" Spacing="5" Padding="10">
+					<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*"></RowDefinition>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"></ColumnDefinition>
+						<ColumnDefinition Width="*"></ColumnDefinition>
+						<ColumnDefinition Width="*"></ColumnDefinition>
+					</Grid.ColumnDefinitions>
+				<Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource DarkGreyRegularStyle}" Font="{StaticResource RegularFont}"><Label.Text>Send us a message from this app</Label.Text></Label>
+				<Label Grid.Row="0" Grid.Column="2" Style="{StaticResource DarkGreyRegularStyle}" Font="{StaticResource SmallFont}"><Label.Text>Our team will reply within 1 - 2 days</Label.Text></Label>
+					</Grid>
+			</StackLayout>
+		</StackLayout>
+		<StackLayout BackgroundColor="White" Padding="10" Orientation="Vertical" Spacing="5" >
+			<Label  Style="{StaticResource BoldLabelStyle}"   FontAttributes="Bold"><Label.Text>Contact us by post</Label.Text></Label>
+			<BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="Black" ></BoxView>
+			<StackLayout Orientation="Vertical" Spacing="2" >
+				<Label  Style="{StaticResource BoldLabelStyle}" Font="{StaticResource RegularxFont}" FontAttributes="Bold"><Label.Text>70 Grosvenor Street</Label.Text></Label>
+				<Label  Style="{StaticResource BoldLabelStyle}" Font="{StaticResource RegularxFont}" FontAttributes="Bold"><Label.Text>London</Label.Text></Label>
+				<Label  Style="{StaticResource BoldLabelStyle}" Font="{StaticResource RegularxFont}" FontAttributes="Bold"><Label.Text>W1k3JP</Label.Text></Label>
+			</StackLayout>
+			<BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="Black" ></BoxView>
+			<Label Style="{StaticResource DarkGreyRegularStyle}" Font="{StaticResource SmallFont}"><Label.Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Label.Text></Label>
+		</StackLayout>
+	</StackLayout>
+    <Grid
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            IsVisible="{Binding IsBusy}">
+            <Grid
+                BackgroundColor="Black"
+                Opacity="0.2" />
+            <ActivityIndicator
+                Color="White"
+                IsRunning="true"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+            </ActivityIndicator>
+        </Grid>
+    </Grid>
+</ContentPage>

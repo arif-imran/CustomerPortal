@@ -1,0 +1,465 @@
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
+using CustomerPortal.Facade.Facades;
+using Prism.Services;
+using Prism.Mvvm;
+using System.Collections.Generic;
+using Prism.Commands;
+
+namespace CustomerPortalApp.ViewModels
+{
+    using System.Threading.Tasks;
+
+    using Grosvenor.Mobile.Common.Utils;
+
+    using Xamarin.Forms.Xaml;
+
+    public class AccountStatementsPageViewModel : NavigationBaseViewModel
+    {
+        private readonly IPropertyFacade propertyFacade;
+
+        /// <summary>
+        /// The properties.
+        /// </summary>
+        private PropertyViewModel properties;
+
+        /// <summary>
+        /// The statements.
+        /// </summary>
+        private ObservableCollection<StatementsViewModel> statements;
+
+        /// <summary>
+        /// The current balance.
+        /// </summary>
+		private ObservableCollection<StatementsViewModel> currentBalance;
+
+		/// <summary>
+		/// The net due.
+		/// </summary>
+		private double netDue;
+
+        /// <summary>
+        /// The unallocated total.
+        /// </summary>
+        private double unallocatedTotal;
+
+        /// <summary>
+        /// The upcoming charges.
+        /// </summary>
+        private double upcomingCharges;
+
+        /// <summary>
+        /// The balance.
+        /// </summary>
+        private double balance;
+
+        /// <summary>
+        /// The source.
+        /// </summary>
+        private object source;
+
+<<<<<<< HEAD
+        public AccountStatementsPageViewModel(IPageDialogService dialogService, IAuthenticationFacade authenticationFacade, IPropertyFacade propertyFacade) : base(dialogService, authenticationFacade)
+=======
+        /// <summary>
+        /// The active tab title.
+        /// </summary>
+        private string activeTabTitle = "Statement";
+
+        /// <summary>
+        /// The is current balacne tab.
+        /// </summary>
+        private bool isCurrentBalacneTab;
+
+        /// <summary>
+        /// The is statement tab.
+        /// </summary>
+        private bool isStatementTab;
+
+        /// <summary>
+        /// The is data available.
+        /// </summary>
+        private bool isStatementAvailable;
+
+
+        /// <summary>
+        /// The is current balance available.
+        /// </summary>
+        private bool isCurrentBalanceAvailable;
+
+        public AccountStatementsPageViewModel(IPageDialogService dialogService, IAuthenticationFacade authenticationFacade) : base(dialogService, authenticationFacade)
+>>>>>>> feature/account_statement_page
+        {
+            this.propertyFacade = propertyFacade;
+            this.properties = new PropertyViewModel();
+            this.Statements = new ObservableCollection<StatementsViewModel>();
+            this.CurrentBalance = new ObservableCollection<StatementsViewModel>();
+
+            this.populateFakeData();
+        }
+
+        /// <summary>
+        /// Gets or sets the properties.
+        /// </summary>
+        /// <value>The properties.</value>
+        public PropertyViewModel Properties
+        {
+            get { return this.properties; }
+
+            set { this.SetProperty(ref this.properties, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the properties.
+        /// </summary>
+        /// <value>The properties.</value>
+        public ObservableCollection<StatementsViewModel> Statements
+        {
+            get { return this.statements; }
+
+            set { this.SetProperty(ref this.statements, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the events.
+        /// </summary>
+        /// <value>The events.</value>
+        public ObservableCollection<StatementsViewModel> CurrentBalance
+        {
+            get { return this.currentBalance; }
+
+            set { this.SetProperty(ref this.currentBalance, value); }
+        }
+
+		/// <summary>
+		/// Gets or sets the net due.
+		/// </summary>
+		/// <value>The net due.</value>
+		public double NetDue
+		{
+			get
+			{
+				return this.netDue;
+			}
+
+			set
+			{
+				this.SetProperty(ref this.netDue, value);
+			}
+		}
+
+        /// <summary>
+        /// Gets or sets the unallocated total.
+        /// </summary>
+        /// <value>The unallocated total.</value>
+		public double UnallocatedTotal
+		{
+			get
+			{
+                return this.unallocatedTotal;
+			}
+
+			set
+			{
+				this.SetProperty(ref this.unallocatedTotal, value);
+			}
+		}
+
+        /// <summary>
+        /// Gets or sets the upcoming charges.
+        /// </summary>
+        /// <value>The upcoming charges.</value>
+		public double UpcomingCharges
+		{
+			get
+			{
+				return this.upcomingCharges;
+			}
+
+			set
+			{
+				this.SetProperty(ref this.upcomingCharges, value);
+			}
+		}
+
+        /// <summary>
+        /// Gets or sets the balance.
+        /// </summary>
+        /// <value>The balance.</value>
+		public double Balance
+		{
+			get
+			{
+                return this.balance;
+			}
+
+			set
+			{
+				this.SetProperty(ref this.balance, value);
+			}
+		}
+
+        /// <summary>
+        /// Gets or sets the active tab title.
+        /// </summary>
+        /// <value>The active tab title.</value>
+        public string ActiveTabTitle
+        {
+            get { return this.activeTabTitle; }
+
+            set { this.SetProperty(ref this.activeTabTitle, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the properties.
+        /// </summary>
+        /// <value>The properties.</value>
+        public object Source
+        {
+            get { return this.source; }
+
+            set { this.SetProperty(ref this.source, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this
+        /// <see cref="T:CustomerPortalApp.ViewModels.AccountStatementsPageViewModel"/> is current balance tab.
+        /// </summary>
+        /// <value><c>true</c> if is current balance tab; otherwise, <c>false</c>.</value>
+        public bool IsCurrentBalanceTab
+        {
+            get { return this.isCurrentBalacneTab; }
+            set { this.SetProperty(ref this.isCurrentBalacneTab, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this
+        /// <see cref="T:CustomerPortalApp.ViewModels.AccountStatementsPageViewModel"/> is statement tab.
+        /// </summary>
+        /// <value><c>true</c> if is statement tab; otherwise, <c>false</c>.</value>
+		public bool IsStatementTab
+        {
+            get { return this.isStatementTab; }
+            set { this.SetProperty(ref this.isStatementTab, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this
+        /// <see cref="T:CustomerPortalApp.ViewModels.AccountStatementsPageViewModel"/> is data available.
+        /// </summary>
+        /// <value><c>true</c> if is data available; otherwise, <c>false</c>.</value>
+		public bool IsStatementAvailable
+        {
+            get
+            {
+                return this.isStatementAvailable;
+            }
+            set
+            {
+                SetProperty(ref this.isStatementAvailable, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this
+        /// <see cref="T:CustomerPortalApp.ViewModels.AccountStatementsPageViewModel"/> is current balance available.
+        /// </summary>
+        /// <value><c>true</c> if is current balance available; otherwise, <c>false</c>.</value>
+		public bool IsCurrentBalanceAvailable
+        {
+            get
+            {
+                return this.isCurrentBalanceAvailable;
+            }
+            set
+            {
+                SetProperty(ref this.isCurrentBalanceAvailable, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets the table selection command.
+        /// </summary>
+        /// <value>The table selection command.</value>
+        public DelegateCommand<string> TableSelectionCommand => new DelegateCommand<string>(this.TableSelection)
+          .ObservesProperty(() => this.ActiveTabTitle);
+
+        /// <summary>
+        /// Ons the navigated to.
+        /// </summary>
+        /// <param name="parameters">Parameters.</param>
+        public override void OnNavigatedTo(Prism.Navigation.NavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+<<<<<<< HEAD
+
+            this.populateFakeData();
+
+            this.LoadData().Forget();
+
+        }
+
+        private async Task LoadData()
+        {
+            // this.propertyFacade.GetAccountStatement()
+
+=======
+>>>>>>> feature/account_statement_page
+        }
+
+        public void populateFakeData()
+        {
+            this.Properties = new PropertyViewModel()
+            {
+                LeaseAddress = "42 Eaton Square",
+                LeaseUnit = "Flat A Ground / Garden Flrs, Mayfair",
+                LeaseAccountNumber = "T00000387",
+                AccountBalance = 2666.430
+            };
+
+            this.Statements.Add(new StatementsViewModel()
+            {
+                Date = "06/26/2016",
+                Balance = 26664.30,
+                Description = "Service Charge",
+                InvoiceNo = "0023525",
+                Payments = 4412.00
+            });
+            this.Statements.Add(new StatementsViewModel()
+            {
+                Date = "04/27/2016",
+                Balance = -26664.30,
+                Description = "Payment received",
+                InvoiceNo = "0023525",
+                Payments = 4412.00
+            });
+            this.Statements.Add(new StatementsViewModel()
+            {
+                Date = "05/25/2016",
+                Balance = 26664.30,
+                Description = "Private Garden Charges",
+                InvoiceNo = "0023525",
+                Payments = 4412.00
+            });
+            this.Statements.Add(new StatementsViewModel()
+            {
+                Date = "04/26/2015",
+                Balance = 86.30,
+                Description = "Private Garden Charges",
+                InvoiceNo = "0023525",
+                Payments = 4412.00
+            });
+            this.Statements.Add(new StatementsViewModel()
+            {
+                Date = "01/23/2015",
+                Balance = -86.30,
+                Description = "Private Garden Charges",
+                InvoiceNo = "0023525",
+                Payments = 4412.00
+            });
+            this.Statements.Add(new StatementsViewModel()
+            {
+                Date = "03/16/2015",
+                Balance = 86.30,
+                Description = "Private Garden Charges",
+                InvoiceNo = "0023525",
+                Payments = 4412.00
+            });
+
+            this.CurrentBalance.Add(new StatementsViewModel()
+            {
+            	Date = "03/14/2016",
+            	Balance = 26664.30,
+            	Description = "Service Charge",
+            	InvoiceNo = "0023525",
+            	Payments = 4412.00
+            });
+            this.CurrentBalance.Add(new StatementsViewModel()
+            {
+            	Date = "03/30/2016",
+            	Balance = 26664.30,
+            	Description = "Payment received",
+            	InvoiceNo = "0023525",
+            	Payments = 4412.00
+            });
+            this.CurrentBalance.Add(new StatementsViewModel()
+            {
+            	Date = "03/19/2016",
+            	Balance = 26664.30,
+            	Description = "Private Garden Charges",
+            	InvoiceNo = "0023525",
+            	Payments = 4412.00
+            });
+            this.CurrentBalance.Add(new StatementsViewModel()
+            {
+            	Date = "03/09/2016",
+            	Balance = 26664.30,
+            	Description = "Service Charge",
+            	InvoiceNo = "0023525",
+            	Payments = 4412.00
+            });
+
+            this.NetDue = 9876.33;
+            this.UnallocatedTotal = 65522.32;
+            this.UpcomingCharges = 6552.455;
+            this.Balance = 62332.65;
+
+            this.IsStatementAvailable = this.Statements.Count > 0 ? true : false;
+            this.Statements = new ObservableCollection<StatementsViewModel>(this.Statements.OrderByDescending(o => o.Date));
+
+            this.IsStatementTab = true;
+            for (int i = 0; i < this.Statements.Count; i++)
+            {
+                this.Statements[i].Index = i;
+            }
+
+            this.Source = this.Statements.GroupBy(g => g.Year)
+                .OrderByDescending(o => o.Key.ToString());
+        }
+
+        /// <summary>
+        /// Tables the selection.
+        /// </summary>
+        /// <param name="parameter">Parameter.</param>
+        private void TableSelection(string parameter)
+        {
+            this.Source = new object();
+
+            if (parameter == "Statement")
+            {
+				this.ActiveTabTitle = "Statement";
+				this.IsCurrentBalanceTab = false;
+				this.IsStatementTab = true;
+				this.IsStatementAvailable = this.Statements.Count > 0 ? true : false;
+				
+                for (int i = 0; i < this.Statements.Count; i++)
+                {
+                    this.Statements[i].Index = i;
+                }
+
+                this.Source = this.Statements.GroupBy(g => g.Year)
+                    .OrderByDescending(o => o.Key.ToString());
+            }
+
+            if (parameter == "CurrentBalance")
+            {
+                
+                this.ActiveTabTitle = "CurrentBalance";
+                this.IsCurrentBalanceTab = true;
+                this.IsStatementTab = false;
+                this.IsCurrentBalanceAvailable = this.CurrentBalance.Count > 0 ? true : false;
+                this.CurrentBalance = new ObservableCollection<StatementsViewModel>(this.CurrentBalance.OrderByDescending(o => o.Date));
+                for (int i = 0; i < this.CurrentBalance.Count; i++)
+                {
+                    this.CurrentBalance[i].Index = i;
+                }
+
+                this.Source = this.CurrentBalance.GroupBy(g => g.Year)
+                    .OrderByDescending(o => o.Key.ToString());
+            }
+        }
+
+    }
+
+}
